@@ -15,13 +15,14 @@ import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
 
 import controller.Launcher;
+import controller.OSValidator;
 
 public class PDF {
 	public static String exportAsPdf(Student s){
 		PdfWriter writer;
 		try {
 			String filePath;
-			if(controller.OSValidator.isWindows()){
+			if(OSValidator.isWindows()){
 				filePath = (System.getProperty("user.dir")+"/PDF/"+s.name+".pdf").replace('/','\\');	
 			}
 			else{
@@ -61,7 +62,7 @@ public class PDF {
 			filePath = (System.getProperty("user.dir")+"/PDF/"+s.name+".pdf").replace('\\','/');
 		}
 		
-		String hash = Hash.toHex(Hash.SHA256.checksum(new File(filePath)));
+		String hash = Hash.SHA256.checksum(new File(filePath));
 		try {
 			
 			System.out.println(hash);

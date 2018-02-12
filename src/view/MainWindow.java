@@ -89,10 +89,6 @@ public class MainWindow extends JFrame{
 			
 			Launcher.config.setAsDone(ls);
 			System.out.println("taille de la liste : "+ls.size());
-			this.setVisible(false);
-			this.setVisible(true);
-			this.repaint();
-			jd.setVisible(true);
 			
 			
 		}
@@ -100,6 +96,10 @@ public class MainWindow extends JFrame{
 			
 		}
 		
+		this.setVisible(false);
+		this.setVisible(true);
+		this.repaint();
+		jd.setVisible(true);
 		
 		
 	}
