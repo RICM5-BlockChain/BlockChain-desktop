@@ -35,7 +35,7 @@ public class Mailer{
 		properties.setProperty("mail.from", IMAP_ACCOUNT1);
 		Session session = Session.getInstance(properties);
 
-		// 2 -> Création du message
+		// 2 -> Creation du message
 		MimeMessage message = new MimeMessage(session);
 		try {
 			message.setText(content);
@@ -66,7 +66,7 @@ public class Mailer{
 	}
 
 	public boolean send_attached(String address,String subject,String content,String path) {
-		// 1 -> Création de la session
+		// 1 -> Creation de la session
 		Properties properties = new Properties();
 		properties.setProperty("mail.transport.protocol", "smtp");
 		properties.setProperty("mail.smtp.starttls.enable", "true");
@@ -76,7 +76,7 @@ public class Mailer{
 		properties.setProperty("mail.from", IMAP_ACCOUNT1);
 		Session session = Session.getInstance(properties);
 
-		// 2 -> Création du message avec pièce jointe
+		// 2 -> Creation du message avec piece jointe
 		File file = new File(path + "/H.jpg");
 		FileDataSource datasource1 = new FileDataSource(file);
 		DataHandler handler1 = new DataHandler(datasource1);
