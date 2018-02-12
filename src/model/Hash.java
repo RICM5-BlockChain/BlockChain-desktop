@@ -3,7 +3,14 @@ package model;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.LinkedList;
+
+import javax.xml.bind.DatatypeConverter;
+
+import com.sun.mail.iap.ByteArray;
 
 public enum Hash {
 	
@@ -22,6 +29,10 @@ public enum Hash {
         return name;
     }
     
+    public static String toHex(byte[] bytes) { 
+        return DatatypeConverter.printHexBinary(bytes); 
+    } 
+    
     public String checksum(File input) {
     	FileReader fr;
 		try {
@@ -32,17 +43,21 @@ public enum Hash {
 	    		lc.add((char)(value));
 	    		value = fr.read();
 	    	}
-	    	byte[] hash = String.valueOf((lc.toArray())).getBytes();
-	   	    StringBuffer hexString = new StringBuffer();
-	   	    for (int i = 0; i < hash.length; i++) {
-	   	    String hex = Integer.toHexString(0xff & hash[i]);
-	   	    if(hex.length() == 1) hexString.append('0');
-	           hexString.append(hex);
-	   	    }
+	    	
+	    	char[] values = new char[lc.size()];
+	    	for(int i=0;i<lc.size();i++){
+	    		values[i]= lc.get(i);
+	    	}
+	    	
+	    	MessageDigest digest = MessageDigest.getInstance("SHA-256");
+	    	byte[] hash = digest.digest(new String(values).getBytes("UTF-8"));
 	   	    fr.close();
-	   	    return hexString.toString();
+	   	    return toHex(hash);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 			return null;
 		}
