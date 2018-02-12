@@ -1,4 +1,4 @@
-package view;
+Ôªøpackage view;
 
 import java.awt.Graphics;
 import java.util.List;
@@ -20,7 +20,7 @@ public class AlreadyDonePannel extends JPanel{
 	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		g.drawString("Etudiant dÈj‡ fait :", 15, 15);
+		g.drawString("Etudiant d√©j√† fait :", 15, 15);
 		List<Student> ls = Launcher.config.getDone();
 		for(int i=0;i<ls.size();i++){
 			g.drawString(ls.get(i).getName(), 15, 30+i*15);

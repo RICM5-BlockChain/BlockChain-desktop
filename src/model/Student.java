@@ -1,4 +1,4 @@
-package model;
+ï»¿package model;
 
 import controller.Launcher;
 
@@ -84,30 +84,30 @@ public class Student {
 		String phrase="";
 		
 		if(Launcher.config.Language.equalsIgnoreCase("FR")){
-			phrase = Launcher.config.universityName + " certifie que l'étudiant ";
+			phrase = Launcher.config.universityName + " certifie que l'Ã©tudiant ";
 			
 			if(name !=null){
 				phrase += name+" ";
 			}
 			
 			if(INE != null){
-				phrase += "identifié par l'INE : " + INE + " ";
+				phrase += "identifiÃ© par l'INE : " + INE + " ";
 			}
 			
 			if(annee != 0){
-				phrase += "à obtenu en " + annee;
+				phrase += "Ã  obtenu en " + annee;
 				if(diplomeName!=null){
 					phrase += " le diplome " + diplomeName;
 				}
 			}
 			else{
 				if(diplomeName != null){
-					phrase += "à obtenu le diplome " + diplomeName;		
+					phrase += "Ã  obtenu le diplome " + diplomeName;		
 				}
 			}
 			
 			if(diplomeNumber != 0){
-				phrase += ", numéro du diplomé : " + diplomeNumber;
+				phrase += ", numÃ©ro du diplomÃ© : " + diplomeNumber;
 			}
 		}
 		else if(Launcher.config.Language.equalsIgnoreCase("EN")){
