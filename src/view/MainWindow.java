@@ -20,12 +20,12 @@ import model.Student;
 public class MainWindow extends JFrame{
 	private static final long serialVersionUID = -7973353347922125981L;
 	List<File> lf = new LinkedList<File>();
-
+	JDialog jd;
 	
 	public MainWindow(String title,int width,int height){
 		super(title);
 		setSize(width, height);
-		JDialog jd = new JDialog(this);
+		jd = new JDialog(this);
 		jd.setDropTarget(new DropTarget() {
 			private static final long serialVersionUID = -3948411003514866271L;
 
@@ -46,8 +46,6 @@ public class MainWindow extends JFrame{
 		                lf.add(file);
 		            }
 		            showUp();
-		            jd.setEnabled(false);
-		            jd.setVisible(false);
 		        } catch (Exception ex) {
 		            ex.printStackTrace();
 		        }
@@ -57,6 +55,7 @@ public class MainWindow extends JFrame{
 		jd.setAlwaysOnTop(true);
 		jd.setSize(250,250);
 		jd.setVisible(true);
+		this.addWindowListener(new MainWindowListener());
 		this.setLocationRelativeTo(null);
 		this.add(new AlreadyDonePannel());
 		jd.setLocationRelativeTo(null);
@@ -65,25 +64,39 @@ public class MainWindow extends JFrame{
 	
 	
 	public void showUp(){
-		this.setVisible(true);
 		List<Student> ls = new LinkedList<Student>();
 		
 		for(int i=0;i<lf.size();i++){
 			ls.addAll(CSV.readCSV(lf.get(i)));
 		}
 		
-		for(int i=0;i<ls.size();i++){
-			//System.out.println(ls.get(i).finalPresentation());
-			String hash = PDF.exportAsPdf(ls.get(i));
-			/** TODO
-			 * 	send hash to blockChain
-			 *  Get transaction number 
-			 *  => send mail with pdf + transaction number
-			 */
+		int nombreEtudiant = ls.size();
+		System.out.println("Nombre d'étudiants présent dans le fichier : " + nombreEtudiant);
+		jd.setVisible(false);
+		int dialogButton = JOptionPane.showConfirmDialog(this, nombreEtudiant + " étudiants trouvés dans le fichier, cela est correct ?","Confirmation",JOptionPane.YES_NO_OPTION);
+		if(dialogButton==0){
+			for(int i=0;i<ls.size();i++){
+				//System.out.println(ls.get(i).finalPresentation());
+				String hash = PDF.exportAsPdf(ls.get(i));
+				/** TODO
+				 * 	send hash to blockChain
+				 *  Get transaction number 
+				 *  => send mail with pdf + transaction number
+				 */
+			}
+			
+			Launcher.config.setAsDone(ls);
+			System.out.println("taille de la liste : "+ls.size());
+			this.setVisible(true);
+			jd.setVisible(true);
+			
+			
+		}
+		else{
+			
 		}
 		
-		Launcher.config.setAsDone(ls);
-		System.out.println("taille de la liste : "+ls.size());
+		
 		
 		
 		
