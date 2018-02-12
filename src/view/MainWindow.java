@@ -1,4 +1,4 @@
-package view;
+ï»¿package view;
 
 import java.awt.datatransfer.DataFlavor;
 import java.awt.dnd.DnDConstants;
@@ -44,6 +44,7 @@ public class MainWindow extends JFrame{
 		                }
 		                System.out.println(file.getName());
 		                lf.add(file);
+		                
 		            }
 		            showUp();
 		        } catch (Exception ex) {
@@ -65,15 +66,16 @@ public class MainWindow extends JFrame{
 	
 	public void showUp(){
 		List<Student> ls = new LinkedList<Student>();
-		
+		ls.clear();
 		for(int i=0;i<lf.size();i++){
 			ls.addAll(CSV.readCSV(lf.get(i)));
 		}
+		lf.clear();
 		
 		int nombreEtudiant = ls.size();
-		System.out.println("Nombre d'étudiants présent dans le fichier : " + nombreEtudiant);
+		System.out.println("Nombre d'Ã©tudiants prÃ©sent dans le fichier : " + nombreEtudiant);
 		jd.setVisible(false);
-		int dialogButton = JOptionPane.showConfirmDialog(this, nombreEtudiant + " étudiants trouvés dans le fichier, cela est correct ?","Confirmation",JOptionPane.YES_NO_OPTION);
+		int dialogButton = JOptionPane.showConfirmDialog(this, nombreEtudiant + " Ã©tudiants trouvÃ©s dans le fichier, cela est correct ?","Confirmation",JOptionPane.YES_NO_OPTION);
 		if(dialogButton==0){
 			for(int i=0;i<ls.size();i++){
 				//System.out.println(ls.get(i).finalPresentation());
@@ -87,7 +89,9 @@ public class MainWindow extends JFrame{
 			
 			Launcher.config.setAsDone(ls);
 			System.out.println("taille de la liste : "+ls.size());
+			this.setVisible(false);
 			this.setVisible(true);
+			this.repaint();
 			jd.setVisible(true);
 			
 			
@@ -96,7 +100,7 @@ public class MainWindow extends JFrame{
 			
 		}
 		
-		
+		ls.clear();
 		
 		
 		
