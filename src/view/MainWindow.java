@@ -100,8 +100,6 @@ public class MainWindow extends JFrame{
 			
 		}
 		
-		ls.clear();
-		
 		
 		
 	}
