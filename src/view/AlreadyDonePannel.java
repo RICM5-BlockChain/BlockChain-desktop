@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.util.LinkedList;
@@ -9,15 +10,14 @@ import javax.swing.JPanel;
 public class AlreadyDonePannel extends JPanel{
 	private static final long serialVersionUID = 4002273426369445522L;
 	List<String> filesDone;
-	int X;
-	int Y;
+	int marginY;
 	
-	
-	public AlreadyDonePannel(int locationX,int locationY){
+	public AlreadyDonePannel(int MarginY){
 		super();
-		X = locationX;
-		Y = locationY;
+		marginY=MarginY;
+		setPreferredSize(new Dimension(200, 300));
 		filesDone = new LinkedList<String>();
+		setVisible(true);
 	}
 	
 	public void addFile(String fileName){
@@ -28,11 +28,11 @@ public class AlreadyDonePannel extends JPanel{
 	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		g.setFont(new Font(Font.SERIF,Font.ITALIC,15));
-		g.drawString("imported files", X+15, Y+15);
+		g.setFont(new Font(Font.SERIF,Font.BOLD,15));
+		g.drawString("Imported files", 15, marginY+15);
 		g.setFont(new Font(Font.SERIF,0,12));
 		for(int i=0;i<filesDone.size();i++){
-			g.drawString(filesDone.get(i), X+15,Y+ 30+i*15);
+			g.drawString(filesDone.get(i), 15,marginY+30+i*15);
 		}
 	}
 

@@ -13,6 +13,7 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.border.TitledBorder;
 
 public class PannelDropable extends JPanel{
 	private static final long serialVersionUID = 6463082474113795953L;
@@ -21,21 +22,19 @@ public class PannelDropable extends JPanel{
 	MainWindow mother;
 	int X;
 	int Y;
-	int marginX = 10;
-	int marginY = 10;
+	int marginX = 5;
+	int marginY;
 	int StartingXforDone;
 	
 
-	public PannelDropable(MainWindow mother,int sizeX,int sizeY,int startingXForDone){
+	public PannelDropable(MainWindow mother, int MarginY){
 		super();
-		X = sizeX;
-		Y = sizeY;
-		setPreferredSize(new Dimension(sizeX, sizeY));
-		setMaximumSize(new Dimension(sizeX, sizeY));
-		setMinimumSize(new Dimension(sizeX, sizeY));
-		setSize(300, 300);
+		X = 300;
+		Y = 300;
+		marginY = MarginY;
+		setPreferredSize(new Dimension(310, 300+MarginY+5));
+		this.setBorder(new TitledBorder(""));
 		this.mother=mother;
-		this.StartingXforDone=startingXForDone;
 		filesDone = new LinkedList<String>();
 		this.setDropTarget(new DropTarget() {
 			private static final long serialVersionUID = -3948411003514866271L;
@@ -54,7 +53,6 @@ public class PannelDropable extends JPanel{
 		                }
 		                System.out.println(file.getName());
 		                lf.add(file);
-		                
 		            }
 		            mother.filesDropped(lf);
 		        } catch (Exception ex) {
@@ -76,20 +74,21 @@ public class PannelDropable extends JPanel{
 		/*
 		 * Drop pannel
 		 */
-		g.drawRect(marginX, marginY,marginX+X,marginY+Y);
+		g.drawRect(marginX, marginY,X,Y);
 		String s = "Drag and drop your CSV files here";
 		g.setFont(new Font(Font.MONOSPACED,0,12));
 		g.drawString(s,(int)(marginX+ (X/2)-(s.length()*3.5)),marginY+ Y/2);
 		
 		/*
 		 * ImportedFiles pannel
-		 */
+		 
 		g.setFont(new Font(Font.SERIF,Font.ITALIC,15));
 		g.drawString("imported files", StartingXforDone+15, marginY+15);
 		g.setFont(new Font(Font.SERIF,0,12));
 		for(int i=0;i<filesDone.size();i++){
 			g.drawString(filesDone.get(i), StartingXforDone+15,marginY+30+i*15);
 		}
+		*/
 	}
 
 }

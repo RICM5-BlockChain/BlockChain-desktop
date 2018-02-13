@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.io.File;
 import java.util.List;
 import javax.swing.JFrame;
@@ -7,23 +8,30 @@ import javax.swing.JFrame;
 public class MainWindow extends JFrame{
 	
 	private static final long serialVersionUID = -7973353347922125981L;
-	public AlreadyDonePannel pannelDone;
-	public PannelDropable pannelDrop;
+	public LeftPannel lp;
+	public RightPannel rp;
+	public final int MarginY = 10;
 	
 	public MainWindow(String title,int width,int height){
 		super(title);
 		setSize(width, height);
-		pannelDrop = new PannelDropable(this,300,300,width-150);
 		
-		add(pannelDrop);
+		lp = new LeftPannel(this, MarginY);
+		rp = new RightPannel(MarginY);
+		
+		setLayout(new BorderLayout());
+		
+		add(lp,BorderLayout.CENTER);
+		add(rp,BorderLayout.LINE_END);
 		
 		this.addWindowListener(new MainWindowListener());
+		pack();
 		setVisible(true);
 	}
 	
 	public void filesDropped(List<File> lf){
 		for(int i=0;i<lf.size();i++){
-			pannelDrop.addFile(lf.get(i).getName());
+			rp.pd.addFile(lf.get(i).getName());
 		}
 		
 	}
