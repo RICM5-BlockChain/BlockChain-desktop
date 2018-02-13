@@ -23,8 +23,10 @@ public class PannelDropable extends JPanel{
 	int Y;
 	int marginX = 10;
 	int marginY = 10;
+	int StartingXforDone;
+	
 
-	public PannelDropable(MainWindow mother,int sizeX,int sizeY){
+	public PannelDropable(MainWindow mother,int sizeX,int sizeY,int startingXForDone){
 		super();
 		X = sizeX;
 		Y = sizeY;
@@ -33,6 +35,8 @@ public class PannelDropable extends JPanel{
 		setMinimumSize(new Dimension(sizeX, sizeY));
 		setSize(300, 300);
 		this.mother=mother;
+		this.StartingXforDone=startingXForDone;
+		filesDone = new LinkedList<String>();
 		this.setDropTarget(new DropTarget() {
 			private static final long serialVersionUID = -3948411003514866271L;
 
@@ -80,6 +84,12 @@ public class PannelDropable extends JPanel{
 		/*
 		 * ImportedFiles pannel
 		 */
+		g.setFont(new Font(Font.SERIF,Font.ITALIC,15));
+		g.drawString("imported files", StartingXforDone+15, marginY+15);
+		g.setFont(new Font(Font.SERIF,0,12));
+		for(int i=0;i<filesDone.size();i++){
+			g.drawString(filesDone.get(i), StartingXforDone+15,marginY+30+i*15);
+		}
 	}
 
 }

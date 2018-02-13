@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.io.File;
 import java.util.List;
 import javax.swing.JFrame;
@@ -14,8 +13,7 @@ public class MainWindow extends JFrame{
 	public MainWindow(String title,int width,int height){
 		super(title);
 		setSize(width, height);
-		pannelDone = new AlreadyDonePannel(0,0);
-		pannelDrop = new PannelDropable(this,300,300);
+		pannelDrop = new PannelDropable(this,300,300,width-150);
 		
 		add(pannelDrop);
 		
@@ -25,7 +23,7 @@ public class MainWindow extends JFrame{
 	
 	public void filesDropped(List<File> lf){
 		for(int i=0;i<lf.size();i++){
-			pannelDone.addFile(lf.get(i).getName());
+			pannelDrop.addFile(lf.get(i).getName());
 		}
 		
 	}
