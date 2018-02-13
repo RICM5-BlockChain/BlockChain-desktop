@@ -16,8 +16,8 @@ public class MainWindow extends JFrame{
 		super(title);
 		setSize(width, height);
 		
-		lp = new LeftPannel(this, MarginY);
-		rp = new RightPannel(MarginY);
+		lp = new LeftPannel(this, MarginY,300,300);
+		rp = new RightPannel(this,MarginY);
 		
 		setLayout(new BorderLayout());
 		

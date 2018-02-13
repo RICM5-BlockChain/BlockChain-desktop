@@ -11,13 +11,13 @@ public class LeftPannel extends JPanel{
 	private static final long serialVersionUID = 7379171729501157003L;
 	public PannelDropable pd;
 	public JButton Validate;
-	MainWindow mother;
+	private MainWindow mother;
 	
-	public LeftPannel(MainWindow mother,int MarginY){
+	public LeftPannel(MainWindow mother,int MarginY,int X,int Y){
 		super();
 		this.mother= mother;
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
-		pd = new PannelDropable(mother, MarginY);
+		pd = new PannelDropable(mother, MarginY,X,Y);
 		pd.setAlignmentX(Component.CENTER_ALIGNMENT);
 		this.add(pd);
 		

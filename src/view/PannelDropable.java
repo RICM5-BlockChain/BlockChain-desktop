@@ -27,13 +27,12 @@ public class PannelDropable extends JPanel{
 	int StartingXforDone;
 	
 
-	public PannelDropable(MainWindow mother, int MarginY){
+	public PannelDropable(MainWindow mother, int MarginY,int X,int Y){
 		super();
-		X = 300;
-		Y = 300;
+		this.X = X;
+		this.Y = Y;
 		marginY = MarginY;
-		setPreferredSize(new Dimension(310, 300+MarginY+5));
-		this.setBorder(new TitledBorder(""));
+		setPreferredSize(new Dimension(X+10, Y+MarginY+5));
 		this.mother=mother;
 		filesDone = new LinkedList<String>();
 		this.setDropTarget(new DropTarget() {
