@@ -17,6 +17,7 @@ public class SelectionPannel extends JPanel implements Scrollable{
 	
 	public SelectionPannel(ValidateListElement[] list){
 		super();
+		this.list=list;
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		for(int i=0;i<list.length;i++){
 			list[i].setAlignmentX(LEFT_ALIGNMENT);

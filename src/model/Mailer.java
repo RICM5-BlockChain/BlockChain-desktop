@@ -25,7 +25,11 @@ public class Mailer{
 	private static final String IMAP_ACCOUNT1 = "";
 	private static final String PASSWORD_SMTP1 = "";
 
-	public boolean send(String address,String subject,String content) {
+	public static void init(){
+		
+	}
+	
+	public static boolean send(String address,String subject,String content) {
 		Properties properties = new Properties();
 		properties.setProperty("mail.transport.protocol", "smtp");
 		properties.setProperty("mail.smtp.starttls.enable", "true");
@@ -65,7 +69,7 @@ public class Mailer{
 		return true;
 	}
 
-	public boolean send_attached(String address,String subject,String content,String path) {
+	public static boolean send_attached(String address,String subject,String content,String path) {
 		// 1 -> Creation de la session
 		Properties properties = new Properties();
 		properties.setProperty("mail.transport.protocol", "smtp");
