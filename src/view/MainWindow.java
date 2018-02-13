@@ -35,7 +35,7 @@ public class MainWindow extends JFrame{
 	}
 	
 	
-	
+	/*
 	public void showUp(){
 		List<Student> ls = new LinkedList<Student>();
 		ls.clear();
@@ -52,11 +52,7 @@ public class MainWindow extends JFrame{
 			for(int i=0;i<ls.size();i++){
 				//System.out.println(ls.get(i).finalPresentation());
 				String hash = PDF.exportAsPdf(ls.get(i));
-				/** TODO
-				 * 	send hash to blockChain
-				 *  Get transaction number 
-				 *  => send mail with pdf + transaction number
-				 */
+				
 			}
 			
 			Launcher.config.setAsDone(ls);
@@ -75,7 +71,7 @@ public class MainWindow extends JFrame{
 		
 		
 	}
-	
+	*/
 	public void ErrorExit(){
 		this.setVisible(false);
 		System.exit(-1);
