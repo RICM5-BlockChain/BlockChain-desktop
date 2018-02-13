@@ -18,7 +18,7 @@ import java.util.Properties;
 public class Mailer{
 
 	/**
-	 * Read in secret_config/configMailer.xml
+	 * Read in secret_config/configMailer.csv
 	 */
 	private static final String SMTP_HOST1 = "";
 	private static final String LOGIN_SMTP1 = "";
