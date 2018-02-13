@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -28,6 +29,10 @@ public class RightPannel extends JPanel{
 		bb = new JButton("Browse");
 		bb.setAlignmentX(Component.CENTER_ALIGNMENT);
 		this.add(bb);
+		
+		JPanel jp = new JPanel();
+		jp.setPreferredSize(new Dimension(10,15));
+		this.add(jp);
 		
 		bb.addMouseListener(new MouseListener() {
 			

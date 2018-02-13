@@ -22,7 +22,7 @@ public class AlreadyDonePannel extends JPanel{
 		marginX=10;
 		X=200;
 		Y=300;
-		setPreferredSize(new Dimension(X+marginX*2, marginY+Y));
+		setPreferredSize(new Dimension(X+marginX*2, marginY+Y+5));
 		filesDone = new LinkedList<String>();
 		setVisible(true);
 	}

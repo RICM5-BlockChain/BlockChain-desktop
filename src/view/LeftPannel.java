@@ -26,6 +26,10 @@ public class LeftPannel extends JPanel{
 		Validate.setAlignmentX(Component.CENTER_ALIGNMENT);
 		this.add(Validate);
 		
+		JPanel jp = new JPanel();
+		jp.setPreferredSize(new Dimension(10,15));
+		this.add(jp);
+		
 		this.setVisible(true);
 	}
 
