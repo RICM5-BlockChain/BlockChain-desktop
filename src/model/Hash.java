@@ -2,17 +2,9 @@ package model;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.LinkedList;
-
 import javax.xml.bind.DatatypeConverter;
-
-import com.sun.mail.iap.ByteArray;
     
     public enum Hash { 
     	   

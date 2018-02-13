@@ -18,48 +18,20 @@ import model.PDF;
 import model.Student;
 
 public class MainWindow extends JFrame{
+	
 	private static final long serialVersionUID = -7973353347922125981L;
-	List<File> lf = new LinkedList<File>();
-	JDialog jd;
+	public AlreadyDonePannel pannelDone;
+	public PannelDropable pannelDrop;
 	
 	public MainWindow(String title,int width,int height){
 		super(title);
 		setSize(width, height);
-		jd = new JDialog(this);
-		jd.setDropTarget(new DropTarget() {
-			private static final long serialVersionUID = -3948411003514866271L;
-
-			@SuppressWarnings("unchecked")
-			public synchronized void drop(DropTargetDropEvent evt) {
-		        try {
-		            evt.acceptDrop(DnDConstants.ACTION_COPY);
-		            List<File> droppedFiles = (List<File>)
-		                evt.getTransferable().getTransferData(DataFlavor.javaFileListFlavor);
-		            for (File file : droppedFiles) {
-		            	if(!file.getName().endsWith(".csv")){
-		                	JOptionPane.showMessageDialog(jd,
-		                		    "Le fichier n'est pas un fichier CSV, l'application va fermer.","ERREUR",JOptionPane.ERROR_MESSAGE);
-		                	ErrorExit();
-		                	
-		                }
-		                System.out.println(file.getName());
-		                lf.add(file);
-		                
-		            }
-		            showUp();
-		        } catch (Exception ex) {
-		            ex.printStackTrace();
-		        }
-		    }
-		});
-		jd.setTitle("Drag and drop .csv file");
-		jd.setAlwaysOnTop(true);
-		jd.setSize(250,250);
-		jd.setVisible(true);
-		this.addWindowListener(new MainWindowListener());
-		this.setLocationRelativeTo(null);
-		this.add(new AlreadyDonePannel());
-		jd.setLocationRelativeTo(null);
+		pannelDone = new AlreadyDonePannel();
+		pannelDrop = new PannelDropable(this);
+	}
+	
+	public void filesDropped(List<File> lf){
+		
 	}
 	
 	
