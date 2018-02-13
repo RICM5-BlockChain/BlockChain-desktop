@@ -10,9 +10,9 @@ public class Launcher {
 	
 	public static void main(String[] args) {
 		config = Config.getConfig();
-		@SuppressWarnings("unused")
-		MainWindow mainWindow = new MainWindow("UGA Chain Desktop", 1366, 768);
 		
+		@SuppressWarnings("unused")
+		MainWindow mainWindow = new MainWindow("UGA Chain Desktop", 680, 480);
 	}
 
 }

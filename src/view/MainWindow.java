@@ -1,21 +1,9 @@
 package view;
 
-import java.awt.datatransfer.DataFlavor;
-import java.awt.dnd.DnDConstants;
-import java.awt.dnd.DropTarget;
-import java.awt.dnd.DropTargetDropEvent;
+import java.awt.BorderLayout;
 import java.io.File;
-import java.util.LinkedList;
 import java.util.List;
-
-import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
-import controller.Launcher;
-import model.CSV;
-import model.PDF;
-import model.Student;
 
 public class MainWindow extends JFrame{
 	
@@ -26,11 +14,19 @@ public class MainWindow extends JFrame{
 	public MainWindow(String title,int width,int height){
 		super(title);
 		setSize(width, height);
-		pannelDone = new AlreadyDonePannel();
-		pannelDrop = new PannelDropable(this);
+		pannelDone = new AlreadyDonePannel(0,0);
+		pannelDrop = new PannelDropable(this,300,300);
+		
+		add(pannelDrop);
+		
+		this.addWindowListener(new MainWindowListener());
+		setVisible(true);
 	}
 	
 	public void filesDropped(List<File> lf){
+		for(int i=0;i<lf.size();i++){
+			pannelDone.addFile(lf.get(i).getName());
+		}
 		
 	}
 	
