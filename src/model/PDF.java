@@ -62,7 +62,7 @@ public class PDF {
 			filePath = (System.getProperty("user.dir")+"/PDF/"+s.name+".pdf").replace('\\','/');
 		}
 		
-		String hash = Hash.SHA256.checksum(new File(filePath));
+		String hash = Hash.toHex(Hash.SHA256.checksum(new File(filePath)));
 		try {
 			
 			System.out.println(hash);
