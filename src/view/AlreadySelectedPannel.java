@@ -4,36 +4,37 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JPanel;
 
-public class AlreadyDonePannel extends JPanel{
+public class AlreadySelectedPannel extends JPanel{
 	
 	private static final long serialVersionUID = 4002273426369445522L;
-	List<String> filesDone;
+	List<File> filesSelected;
 	int marginY;
 	int marginX;
 	int X;
 	int Y;
-	public AlreadyDonePannel(int MarginY){
+	public AlreadySelectedPannel(int MarginY){
 		super();
 		marginY=MarginY;
 		marginX=10;
 		X=200;
 		Y=300;
 		setPreferredSize(new Dimension(X+marginX*2, marginY+Y+5));
-		filesDone = new LinkedList<String>();
+		filesSelected = new LinkedList<File>();
 		setVisible(true);
 	}
 	
-	public void addFile(String fileName){
-		filesDone.add(fileName);
+	public void addFile(File fileName){
+		filesSelected.add(fileName);
 		repaint();
 	}
 	
 	public void clearFiles(){
-		filesDone.clear();
+		filesSelected.clear();
 		repaint();
 	}
 	
@@ -48,8 +49,8 @@ public class AlreadyDonePannel extends JPanel{
 		g.setColor(Color.black);
 		g.setFont(new Font(Font.SERIF,0,14));
 		g.drawRect(marginX, marginY, X, Y);
-		for(int i=0;i<filesDone.size();i++){
-			g.drawString(filesDone.get(i), 15,marginY+55+i*15);
+		for(int i=0;i<filesSelected.size();i++){
+			g.drawString(filesSelected.get(i).getName(), 15,marginY+55+i*15);
 		}
 	}
 

@@ -16,13 +16,13 @@ import javax.swing.JPanel;
 public class RightPannel extends JPanel{
 	private static final long serialVersionUID = -6485528709501127766L;
 	
-	public AlreadyDonePannel pd;
+	public AlreadySelectedPannel pd;
 	public JButton bb;
 	
 	public RightPannel(MainWindow mother,int MarginY){
 		super();
 		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
-		pd = new AlreadyDonePannel(MarginY);
+		pd = new AlreadySelectedPannel(MarginY);
 		pd.setAlignmentX(Component.CENTER_ALIGNMENT);
 		this.add(pd);
 		
@@ -77,7 +77,7 @@ public class RightPannel extends JPanel{
 					
 				}
 				else{
-					JOptionPane.showMessageDialog(mother, "Type de fichier choisis incorrect, merci de choisir un fichier avec l'extension .csv","Error",JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(mother, "Operation aborded","Error",JOptionPane.WARNING_MESSAGE);
 				}
 			}
 		});

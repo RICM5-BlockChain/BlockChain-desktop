@@ -2,8 +2,12 @@ package view;
 
 import java.awt.BorderLayout;
 import java.io.File;
+import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+import model.CSVFile;
 
 public class MainWindow extends JFrame{
 	
@@ -11,10 +15,13 @@ public class MainWindow extends JFrame{
 	public LeftPannel lp;
 	public RightPannel rp;
 	public final int MarginY = 10;
+	public String title;
 	
 	public MainWindow(String title,int width,int height){
 		super(title);
 		setSize(width, height);
+		
+		title=title;
 		
 		lp = new LeftPannel(this, MarginY,300,300);
 		rp = new RightPannel(this,MarginY);
@@ -31,9 +38,23 @@ public class MainWindow extends JFrame{
 	
 	public void filesDropped(List<File> lf){
 		for(int i=0;i<lf.size();i++){
-			rp.pd.addFile(lf.get(i).getName());
+			rp.pd.addFile(lf.get(i));
 		}
 		
+	}
+	
+	public void ValidateFiles(){
+		if(rp.pd.filesSelected.isEmpty()){
+			JOptionPane.showMessageDialog(this, "The selected files list is empty..","Warning",JOptionPane.INFORMATION_MESSAGE);
+			return ;
+		}
+		
+		List<CSVFile> csvList = new LinkedList<CSVFile>();
+		for(int i=0;i<rp.pd.filesSelected.size();i++){
+			csvList.add(new CSVFile(rp.pd.filesSelected.get(i)));
+		}
+		
+		new ValidationWindow(title, csvList);
 	}
 	
 	

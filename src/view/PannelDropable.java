@@ -13,7 +13,6 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.border.TitledBorder;
 
 public class PannelDropable extends JPanel{
 	private static final long serialVersionUID = 6463082474113795953L;
