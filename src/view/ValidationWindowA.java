@@ -3,7 +3,6 @@ package view;
 import java.awt.Font;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +18,7 @@ import model.CSVFile;
 import model.Student;
 
 public class ValidationWindowA extends JFrame implements ItemListener {
+	private static final long serialVersionUID = -6107977944362274279L;
 	
 	JPanel mainPanel;
 	ArrayList<CSVFile> csvFiles;

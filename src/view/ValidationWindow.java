@@ -6,12 +6,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import model.CSVFile;
@@ -24,8 +21,9 @@ public class ValidationWindow extends JFrame{
 	JButton ValidationButton;
 	public ValidationWindow(String title, List<CSVFile> csvlist){
 		super(title);
-		this.setSize(new Dimension(300,500));
 		
+		this.setSize(new Dimension(300,500));
+		this.setLocationRelativeTo(null);
 		ValidateListElement[] elements = new ValidateListElement[csvlist.size()];
 		for(int i=0;i<csvlist.size();i++){
 			elements[i]=new ValidateListElement(csvlist.get(i));
@@ -69,15 +67,20 @@ public class ValidationWindow extends JFrame{
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				JOptionPane.showConfirmDialog(null, "Une fois validé, les diplômes des élèves selectionnés, vont être "
+				int choice = JOptionPane.showConfirmDialog(null, "Une fois validé, les diplômes des élèves selectionnés, vont être "
 						+ "certifiés et écrit dans la BlockChain. Cette écriture est "
 						+ "irréversible","Attention",JOptionPane.YES_NO_OPTION);
-				List<Student> ValidList = sp.getAllValidateStudents();
-				for(int i=0;i<ValidList.size();i++){
-					System.out.println(ValidList.get(i).getName());
-					String hash = PDF.exportAsPdf(ValidList.get(i));
-				}
 				
+				if(choice == JOptionPane.OK_OPTION){
+					List<Student> ValidList = sp.getAllValidateStudents();
+					for(int i=0;i<ValidList.size();i++){
+						System.out.println(ValidList.get(i).getName());
+						String hash = PDF.exportAsPdf(ValidList.get(i));
+					}
+				}
+				else{
+					
+				}
 			}
 		});
 		

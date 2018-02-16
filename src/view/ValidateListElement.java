@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.util.LinkedList;
 import java.util.List;
@@ -28,17 +27,10 @@ public class ValidateListElement extends JPanel {
 		name.setFont(new Font(Font.SERIF, Font.BOLD, 15));
 		this.add(name);
 		for(int i=0;i<StudentNames.size();i++){
-			JPanel jp = new JPanel();
-			jp.setLayout(new FlowLayout());
-			JCheckBox jc = new JCheckBox();
+			JCheckBox jc = new JCheckBox(StudentNames.get(i).getName());
 			jc.setAlignmentX(LEFT_ALIGNMENT);
 			ValidationList.add(jc);
-			jp.add(jc);
-			JLabel jl = new JLabel(StudentNames.get(i).getName());
-			jl.setAlignmentX(LEFT_ALIGNMENT);
-			jp.add(jl);
-			jp.setAlignmentX(LEFT_ALIGNMENT);
-			this.add(jp);
+			this.add(jc);
 		}
 		this.setAlignmentX(LEFT_ALIGNMENT);
 		setAllTrue();

@@ -20,8 +20,8 @@ public class MainWindow extends JFrame{
 	public MainWindow(String title,int width,int height){
 		super(title);
 		setSize(width, height);
-		
-		title=title;
+		this.setLocationRelativeTo(null);
+		this.title=title;
 		
 		lp = new LeftPannel(this, MarginY,300,300);
 		rp = new RightPannel(this,MarginY);
@@ -53,7 +53,7 @@ public class MainWindow extends JFrame{
 		for(int i=0;i<rp.pd.filesSelected.size();i++){
 			csvList.add(new CSVFile(rp.pd.filesSelected.get(i)));
 		}
-		
+		this.setVisible(false);
 		new ValidationWindow(title, csvList);
 	}
 	
