@@ -67,9 +67,9 @@ public class ValidationWindow extends JFrame{
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				int choice = JOptionPane.showConfirmDialog(null, "Une fois validé, les diplômes des élèves selectionnés, vont être "
-						+ "certifiés et écrit dans la BlockChain. Cette écriture est "
-						+ "irréversible","Attention",JOptionPane.YES_NO_OPTION);
+				int choice = JOptionPane.showConfirmDialog(null, "Une fois validÃ©, les diplÃ´mes des Ã©lÃ¨ves selectionnÃ©s, vont Ãªtre "
+						+ "certifiÃ©s et Ã©crit dans la BlockChain. Cette Ã©criture est "
+						+ "irrÃ©versible","Attention",JOptionPane.YES_NO_OPTION);
 				
 				if(choice == JOptionPane.OK_OPTION){
 					List<Student> ValidList = sp.getAllValidateStudents();
