@@ -10,12 +10,32 @@ import controller.OSValidator;
 public class USB {
 	
 	private final static int PRIVATEKEYSIZE=9;
+	public static String KeyLetter="";
+	
+	public static boolean removedKey(){
+	    File drive = new File(KeyLetter+":/");
+	   System.out.println("keyLetter : "+KeyLetter);
+	    if(drive.canRead()){
+	    	int compt=0;
+			while (true){
+				if(!drive.canRead()){
+					return true;
+				}
+				
+				try { Thread.sleep(100); }
+		        catch (InterruptedException e) { /* do nothing */ }
+			}
+	    }
+	    else{
+	    	return false;
+	    }
+	}
 	
 	public static char[] main(String[] argv){
 		    String[] letters = new String[]{ "A", "B", "C", "D", "E", "F", "G", "H", "I","J","K","L","M","N"};
 		    File[] drives = new File[letters.length];
+		    
 		    boolean[] isDrive = new boolean[letters.length];
-		    boolean isBadKey = false;
 
 		    // init the file objects and the initial drive state
 		    for ( int i = 0; i < letters.length; ++i )
@@ -39,10 +59,11 @@ public class USB {
 		            if ( pluggedIn != isDrive[i] )
 		                {
 		                if (pluggedIn){
-		                    System.out.println("USB "+letters[i]+" vient d'être connecté");
+		                	KeyLetter=letters[i];
+		                    System.out.println("USB "+letters[i]+" vient d'Ãªtre connectÃ©");
 		                    System.out.println("lecture des fichiers, merci de patienter de ne pas retirer la clef");
 		                    String username = System.getProperty("user.name");
-		                    //System.out.println("Utilisateur connecté : " + username);
+		                    //System.out.println("Utilisateur connectï¿½ : " + username);
 		                    String filePath;
 		                    if(OSValidator.isWindows()){
 		        				filePath = (letters[i]+":/").replace('/','\\');	
@@ -54,10 +75,10 @@ public class USB {
 		                    File privateKey = new File(filePath+"privateKey.hash");
 		                    try {
 								FileReader fr = new FileReader(security);
-								char[] buff = new char[username.length()];
+								char[] buff = new char[64];
 								fr.read(buff);
-								System.out.println(new String(buff) + " " + username);
-								if(new String(buff).equalsIgnoreCase(username)){
+								System.out.println(new String(buff) + " " + Hash.SHA256.getHash(username));
+								if(new String(buff).equalsIgnoreCase(Hash.SHA256.getHash(username))){
 									fr.close();
 									fr = new FileReader(privateKey);
 									buff =new char[PRIVATEKEYSIZE];
@@ -66,6 +87,7 @@ public class USB {
 									return buff;
 								}
 								else{
+									fr.close();
 									return null;
 								}
 								

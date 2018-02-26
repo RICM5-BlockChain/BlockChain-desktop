@@ -14,14 +14,17 @@ import javax.swing.JScrollPane;
 import model.CSVFile;
 import model.PDF;
 import model.Student;
+import model.USB;
 
 public class ValidationWindow extends JFrame{
 	private static final long serialVersionUID = 2463352889255129611L;
 	SelectionPannel sp;
 	JButton ValidationButton;
+	ValidationWindow main;
+	
 	public ValidationWindow(String title, List<CSVFile> csvlist){
 		super(title);
-		
+		main=this;
 		this.setSize(new Dimension(300,500));
 		this.setLocationRelativeTo(null);
 		ValidateListElement[] elements = new ValidateListElement[csvlist.size()];
@@ -67,16 +70,37 @@ public class ValidationWindow extends JFrame{
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				main.setVisible(false);
 				int choice = JOptionPane.showConfirmDialog(null, "Une fois validé, les diplômes des élèves selectionnés, vont être "
 						+ "certifiés et écrit dans la BlockChain. Cette écriture est "
 						+ "irréversible","Attention",JOptionPane.YES_NO_OPTION);
 				
 				if(choice == JOptionPane.OK_OPTION){
-					List<Student> ValidList = sp.getAllValidateStudents();
-					for(int i=0;i<ValidList.size();i++){
-						System.out.println(ValidList.get(i).getName());
-						String hash = PDF.exportAsPdf(ValidList.get(i));
-					}
+					
+					JOptionPane.showMessageDialog(null,"Veuillez valider puis insérer votre clef USB de securité");
+					char[] privateKey = USB.main(null);
+						if(privateKey!=null){
+							List<Student> ValidList = sp.getAllValidateStudents();
+							for(int i=0;i<ValidList.size();i++){
+								System.out.println(ValidList.get(i).getName());
+								String hash = PDF.exportAsPdf(ValidList.get(i));
+							}
+							JOptionPane.showMessageDialog(null, "Merci de valider puis de retirer la clef de securité");
+							if(USB.removedKey()){
+								JOptionPane.showMessageDialog(null, "Tout est ok");
+								System.exit(0);
+							}
+							else{
+								JOptionPane.showMessageDialog(null, "Probleme de controle, fermeture du programme");
+								System.exit(-1);
+							}
+						}
+						else {
+							JOptionPane.showMessageDialog(null, "Clé USB non conforme, fermeture du programme");
+							System.exit(-1);
+						}
+						
+					
 				}
 				else{
 					

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.security.MessageDigest;
+
 import javax.xml.bind.DatatypeConverter;
     
     public enum Hash { 
@@ -40,6 +41,17 @@ import javax.xml.bind.DatatypeConverter;
                 e.printStackTrace(); 
             } 
             return null; 
-        } 
+        }
+        
+        public String getHash(String stringToHash) { 
+            try{ 
+                MessageDigest digest = MessageDigest.getInstance(getName());  
+                digest.update(stringToHash.getBytes(), 0, stringToHash.length()); 
+                return Hash.toHex(digest.digest());
+            } catch (Exception e) { 
+                e.printStackTrace(); 
+            } 
+            return null; 
+        }
      
     }
