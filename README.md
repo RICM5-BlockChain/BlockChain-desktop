@@ -47,7 +47,9 @@ exemple of a correct config.conf :
 ## Exemple of correct csv file
 
 exemple.csv :
+
 *nom,prenom,annee,numero de diplome,diplome*
+
 *first_name,last_name,year,diploma_number,diploma_name*
 
 
