@@ -55,6 +55,8 @@ exemple.csv :
 
 ## Security questions
 
+The USB key is proven by your program Administrator and will react with the user session, so the USB key will only work on the session that it's create to work with. So if you try to use the program you should use your own USB key. If you lost it, you should message your program Administrator.
+
 In order to prevent a non authorized usage of our application we are using a USB security system, that force the user to insert and remove a USB that are encrypted with security mesures. 
 
 We thought that removing the USB key, is a way to protect our program from "computer leaving" : if someone let the computer openned and leave this room, nobody can use the program because the key will be ejected from the computer before the user's leave.
