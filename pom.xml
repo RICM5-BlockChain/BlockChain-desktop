@@ -4,6 +4,11 @@
   <artifactId>UGAChain_desktop</artifactId>
   <version>1.0.0</version>
 <dependencies>
+<dependency>
+    <groupId>org.json</groupId>
+    <artifactId>json</artifactId>
+    <version>20180130</version>
+</dependency>
   <dependency>
     <groupId>com.itextpdf</groupId>
     <artifactId>itext7-core</artifactId>

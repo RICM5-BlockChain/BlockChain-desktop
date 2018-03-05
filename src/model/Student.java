@@ -8,6 +8,7 @@ public class Student {
 	int diplomeNumber=0;
 	int annee=0;
 	String diplomeName;
+	String mail;
 	
 	
 	
@@ -23,8 +24,18 @@ public class Student {
 		
 	}
 	
+	public String getDiplomaName(){
+		return diplomeName;
+	}
+	
 	public void set(String id,String value){
 		switch(id){
+			case "mail":
+				if(value!=null){
+					mail=value;
+				}
+				
+			break;	
 			case "nom":
 				if(name != null){
 					name = value+ " " + name;
@@ -139,5 +150,9 @@ public class Student {
 		}
 		
 		return phrase;
+	}
+
+	public String getMail() {
+		return mail;
 	}
 }

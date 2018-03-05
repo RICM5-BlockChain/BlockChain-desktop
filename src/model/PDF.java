@@ -18,6 +18,18 @@ import controller.Launcher;
 import controller.OSValidator;
 
 public class PDF {
+	
+	public static String getPathTo(String studentName){
+		String filePath;
+		if(OSValidator.isWindows()){
+			filePath = (System.getProperty("user.dir")+"/PDF/"+studentName+".pdf").replace('/','\\');	
+		}
+		else{
+			filePath = (System.getProperty("user.dir")+"/PDF/"+studentName+".pdf").replace('\\','/');
+		}
+		return filePath;
+	}
+	
 	public static String exportAsPdf(Student s){
 		PdfWriter writer;
 		try {

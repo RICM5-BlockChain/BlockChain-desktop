@@ -12,7 +12,11 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+import controller.OSValidator;
+
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.util.Properties;
 
 public class Mailer{
@@ -20,13 +24,37 @@ public class Mailer{
 	/**
 	 * Read in secret_config/configMailer.csv
 	 */
-	private static final String SMTP_HOST1 = "";
-	private static final String LOGIN_SMTP1 = "";
-	private static final String IMAP_ACCOUNT1 = "";
-	private static final String PASSWORD_SMTP1 = "";
+	private static String SMTP_HOST1 = "";
+	private static String LOGIN_SMTP1 = "";
+	private static String IMAP_ACCOUNT1 = "";
+	private static String PASSWORD_SMTP1 = "";
 
-	public static void init(){
+	public static boolean init(){
+		String filePath;
+		if(OSValidator.isWindows()){
+			filePath = (System.getProperty("user.dir")+"/secret_config/configMailer.csv").replace('/','\\');	
+		}
+		else{
+			filePath = (System.getProperty("user.dir")+"/secret_config/").replace('\\','/');
+		}
 		
+		File file = new File(filePath);
+		try {
+			FileReader fr = new FileReader(file);
+			BufferedReader br = new BufferedReader(fr);
+			String sCurrentLine;
+			sCurrentLine = br.readLine();
+			String[] s = sCurrentLine.split(",");
+			SMTP_HOST1=s[0];
+			LOGIN_SMTP1=s[1];
+			IMAP_ACCOUNT1=s[2];
+			PASSWORD_SMTP1=s[3];
+			br.close();
+			return true;
+		} catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
 	}
 	
 	public static boolean send(String address,String subject,String content) {
@@ -81,7 +109,7 @@ public class Mailer{
 		Session session = Session.getInstance(properties);
 
 		// 2 -> Creation du message avec piece jointe
-		File file = new File(path + "/H.jpg");
+		File file = new File(path);
 		FileDataSource datasource1 = new FileDataSource(file);
 		DataHandler handler1 = new DataHandler(datasource1);
 		MimeBodyPart autruche = new MimeBodyPart();

@@ -12,6 +12,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 
 import model.CSVFile;
+import model.HTTP;
+import model.HTTPModels;
+import model.Mailer;
 import model.PDF;
 import model.Student;
 import model.USB;
@@ -81,13 +84,19 @@ public class ValidationWindow extends JFrame{
 					char[] privateKey = USB.main(null);
 						if(privateKey!=null){
 							List<Student> ValidList = sp.getAllValidateStudents();
-							for(int i=0;i<ValidList.size();i++){
-								System.out.println(ValidList.get(i).getName());
-								String hash = PDF.exportAsPdf(ValidList.get(i));
-							}
 							JOptionPane.showMessageDialog(null, "Merci de valider puis de retirer la clef de securitÃ©");
 							if(USB.removedKey()){
-								JOptionPane.showMessageDialog(null, "Tout est ok");
+								for(int i=0;i<ValidList.size();i++){
+									System.out.println(ValidList.get(i).getName());
+									String hash = PDF.exportAsPdf(ValidList.get(i));
+									try {
+										String transaction = HTTPModels.sendPost(hash);
+										Mailer.send_attached(ValidList.get(i).getMail(), ValidList.get(i).getDiplomaName() + " - " + ValidList.get(i).getName(),"Voici le diplome et le numéro de transaction à conserver, AUCUN DUPLICATA POSSIBLE\ntransaction : \"transaction\"=\""+transaction+"\"",PDF.getPathTo(ValidList.get(i).getName()));
+									} catch (Exception e1) {
+										JOptionPane.showMessageDialog(null, "Erreur lors de l'envoi des données, merci de vérifier votre connexion internet, contacter un administrateur si le probleme persiste");
+										e1.printStackTrace();
+									}
+								}
 								System.exit(0);
 							}
 							else{
