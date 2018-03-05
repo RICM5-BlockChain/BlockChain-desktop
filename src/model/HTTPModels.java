@@ -17,10 +17,10 @@ public class HTTPModels {
 	public static void main(String[] args) throws Exception {
 
 		System.out.println("Testing 1 - Send Http GET request");
-		HTTPModels.sendGet(8);
+		//HTTPModels.sendGet(8);
 
 		System.out.println("\nTesting 2 - Send Http POST request");
-		//HTTPModels.sendPost("1645z64ad65zd4a6");
+		HTTPModels.sendPost("1645z64ad65zd4a6");
 
 	}
 
@@ -61,7 +61,7 @@ public class HTTPModels {
 	}
 
 	// HTTP POST request
-	public static String sendPost(String digest) throws Exception {
+	public static int sendPost(String digest) throws Exception {
 		
 	    Random r = new Random();
 	    String assetId ="";
@@ -105,6 +105,10 @@ public class HTTPModels {
 		in.close();
 		System.out.println("Response : "+response.toString());
 		
-		return assetId;
+		
+		JSONObject obj = new JSONObject(response.toString());
+		int transaction = obj.getInt("transaction");
+		
+		return transaction;
 	}
 }

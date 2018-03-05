@@ -90,7 +90,7 @@ public class ValidationWindow extends JFrame{
 									System.out.println(ValidList.get(i).getName());
 									String hash = PDF.exportAsPdf(ValidList.get(i));
 									try {
-										String transaction = HTTPModels.sendPost(hash);
+										int transaction = HTTPModels.sendPost(hash);
 										Mailer.send_attached(ValidList.get(i).getMail(), ValidList.get(i).getDiplomaName() + " - " + ValidList.get(i).getName(),"Voici le diplome et le numéro de transaction à conserver, AUCUN DUPLICATA POSSIBLE\ntransaction : \"transaction\"=\""+transaction+"\"",PDF.getPathTo(ValidList.get(i).getName()));
 									} catch (Exception e1) {
 										JOptionPane.showMessageDialog(null, "Erreur lors de l'envoi des données, merci de vérifier votre connexion internet, contacter un administrateur si le probleme persiste");
