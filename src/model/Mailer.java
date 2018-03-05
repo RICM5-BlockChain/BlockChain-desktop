@@ -102,6 +102,7 @@ public class Mailer{
 		Properties properties = new Properties();
 		properties.setProperty("mail.transport.protocol", "smtp");
 		properties.setProperty("mail.smtp.starttls.enable", "true");
+		properties.setProperty("mail.smtp.auth", "true");      
 		properties.setProperty("mail.smtp.port", "587");
 		properties.setProperty("mail.smtp.host", SMTP_HOST1);
 		properties.setProperty("mail.smtp.user", LOGIN_SMTP1);
@@ -121,7 +122,7 @@ public class Mailer{
 		}
 		MimeBodyPart body = new MimeBodyPart();
 		try {
-			body.setContent("YOLO", "text/plain");
+			body.setContent(content, "text/plain");
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
