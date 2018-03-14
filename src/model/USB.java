@@ -13,7 +13,7 @@ public class USB {
 	public static String KeyLetter="";
 	
 	public static boolean removedKey(){
-	    File drive = new File(KeyLetter+":/");
+	    File drive = new File(KeyLetter);
 	   System.out.println("keyLetter : "+KeyLetter);
 	    if(drive.canRead()){
 	    	int compt=0;
@@ -32,7 +32,7 @@ public class USB {
 	}
 	
 	public static char[] main(String[] argv){
-		    String[] letters = new String[]{ "A", "B", "C", "D", "E", "F", "G", "H", "I","J","K","L","M","N"};
+		    String[] letters = new String[]{ "Volume/F", "A:/", "B:/", "C:/", "D:/", "E:/", "F:/", "G:/", "H:/", "I:/","J:/","K:/","L:/","M:/","N:/"};
 		    File[] drives = new File[letters.length];
 		    
 		    boolean[] isDrive = new boolean[letters.length];
@@ -40,7 +40,7 @@ public class USB {
 		    // init the file objects and the initial drive state
 		    for ( int i = 0; i < letters.length; ++i )
 		        {
-		        drives[i] = new File(letters[i]+":/");
+		        drives[i] = new File(letters[i]);
 
 		        isDrive[i] = drives[i].canRead();
 		        }
@@ -66,10 +66,10 @@ public class USB {
 		                    //System.out.println("Utilisateur connect� : " + username);
 		                    String filePath;
 		                    if(OSValidator.isWindows()){
-		        				filePath = (letters[i]+":/").replace('/','\\');	
+		        				filePath = (letters[i]).replace('/','\\');	
 		        			}
 		        			else{
-		        				filePath = (letters[i]+":/").replace('\\','/');
+		        				filePath = (letters[i]).replace('\\','/');
 		        			}
 		                    File security = new File(filePath+"security.hash");
 		                    File privateKey = new File(filePath+"privateKey.hash");
