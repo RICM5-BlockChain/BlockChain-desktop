@@ -28,7 +28,7 @@ public class HTTPModels {
 	public static String sendGet(int id) throws Exception {
 
 		//String url = "http://89.86.39.88:1880/UGA/get?transaction="+id;";
-		String url = "http://192.168.1.9:1880/UGA/get?transaction="+id;
+		String url = "http://192.168.43.206:1880/UGA/get?transaction="+id;
 		URL obj = new URL(url);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
@@ -75,7 +75,7 @@ public class HTTPModels {
 		String urlParameters  = "{\n\"digest\":\""+digest+"\",\n\"assetId\":\""+assetId+"\",\n\"$class\":\""+class_var+"\"\n}";
 		byte[] postData       = urlParameters.getBytes( StandardCharsets.UTF_8 );
 		int    postDataLength = postData.length;
-		String request        = "http://192.168.1.9:1880/UGA/post"; 
+		String request        = "http://192.168.43.206:1880/UGA/post"; 
 		//String request		  = "http://89.86.39.88:1880/UGA/post
 		URL    url            = new URL( request );
 		HttpURLConnection conn= (HttpURLConnection) url.openConnection();           
