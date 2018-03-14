@@ -12,7 +12,18 @@ public class Config {
 	String logoFile;
 	String signatureFile;
 	String responsableName;
+	String ledgerIp;
+	
+	
 	List<Student> alreadyDone;
+	
+	public void setIp(String ip){
+		ledgerIp = ip;
+	}
+	
+	public String getIp(){
+		return ledgerIp;
+	}
 	
 	public List<Student> getDone(){
 		return alreadyDone;

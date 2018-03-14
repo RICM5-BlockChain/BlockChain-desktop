@@ -1,6 +1,9 @@
 package model;
 
 import org.json.*;
+
+import controller.Launcher;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.InputStreamReader;
@@ -16,9 +19,10 @@ public class HTTPModels {
 
 	public static void main(String[] args) throws Exception {
 
-		System.out.println("Testing 1 - Send Http GET request");
+		//System.out.println("Testing 1 - Send Http GET request");
 		//HTTPModels.sendGet(8);
-
+		Launcher.config=Config.getConfig();
+		Mailer.init();
 		System.out.println("\nTesting 2 - Send Http POST request");
 		HTTPModels.sendPost("1645z64ad65zd4a6");
 
@@ -75,7 +79,8 @@ public class HTTPModels {
 		String urlParameters  = "{\n\"digest\":\""+digest+"\",\n\"assetId\":\""+assetId+"\",\n\"$class\":\""+class_var+"\"\n}";
 		byte[] postData       = urlParameters.getBytes( StandardCharsets.UTF_8 );
 		int    postDataLength = postData.length;
-		String request        = "http://192.168.43.206:1880/UGA/post"; 
+		String request = Launcher.config.getIp();
+		//String request        = "http://192.168.43.206:1880/UGA/post"; 
 		//String request		  = "http://89.86.39.88:1880/UGA/post
 		URL    url            = new URL( request );
 		HttpURLConnection conn= (HttpURLConnection) url.openConnection();           

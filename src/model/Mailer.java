@@ -12,6 +12,7 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+import controller.Launcher;
 import controller.OSValidator;
 
 import java.io.BufferedReader;
@@ -49,6 +50,7 @@ public class Mailer{
 			LOGIN_SMTP1=s[1];
 			IMAP_ACCOUNT1=s[2];
 			PASSWORD_SMTP1=s[3];
+			Launcher.config.setIp(s[4]);
 			br.close();
 			return true;
 		} catch(Exception e){
