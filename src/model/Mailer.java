@@ -36,7 +36,7 @@ public class Mailer{
 			filePath = (System.getProperty("user.dir")+"/secret_config/configMailer.csv").replace('/','\\');	
 		}
 		else{
-			filePath = (System.getProperty("user.dir")+"/secret_config/").replace('\\','/');
+			filePath = (System.getProperty("user.dir")+"/secret_config/configMailer.csv").replace('\\','/');
 		}
 		
 		File file = new File(filePath);
